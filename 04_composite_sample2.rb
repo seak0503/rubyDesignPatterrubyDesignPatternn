@@ -40,6 +40,26 @@ class AddLiquidsTask < Task
   end
 end
 
+class AlignSubstanceTask < Task
+  def initialize
+    super('AlignSubstanceTask')
+  end
+
+  def  get_time_required
+    8.0
+  end
+end
+
+class ClothTask < Task
+  def initialize
+    super('ClothTask')
+  end
+
+  def  get_time_required
+    10.0
+  end
+end
+
 class CompositeTask < Task
   def initialize(name)
     super(name)
@@ -70,7 +90,24 @@ class MakeBatterTask < CompositeTask
   end
 end
 
+class MakeClothTask < CompositeTask
+  def initialize
+    super('Make bread')
+    self << (AlignSubstanceTask.new)
+    self << (MixTask.new)
+    self << (ClothTask.new)
+  end
+end
+
+class MakeCakeTask < CompositeTask
+  def initialize
+    super('Make cake')
+    self << MakeBatterTask.new
+    self << MakeClothTask.new
+  end
+end
+
 # ===================================
 
-make_batter = MakeBatterTask.new
+make_batter = MakeCakeTask.new
 puts make_batter.get_time_required
