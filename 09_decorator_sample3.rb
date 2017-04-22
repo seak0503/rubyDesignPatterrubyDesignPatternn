@@ -46,6 +46,7 @@ class NumberingWriter < WriterDecorator
 
   def write_line(line)
     @real_writer.write_line("#{@line_number} : #{line}")
+    @line_number += 1
   end
 end
 
@@ -58,20 +59,20 @@ end
 
 # ===========================================
 
-f = NumberingWriter.new(SimpleWriter.new('09_test_data_sample1.txt'))
+f = NumberingWriter.new(SimpleWriter.new('09_file2-1.txt'))
 f.write_line('Hello out there')
 f.close
-# file1.txtに以下の内容が出力される
+# 09_file2-1.txtに以下の内容が出力される
 #1 : Hello world
 
-f = TimeStampingWriter.new(SimpleWriter.new('09_test_data_sample2.txt'))
+f = TimeStampingWriter.new(SimpleWriter.new('09_file2-2.txt'))
 f.write_line('Hello out there')
 f.close
-# file2.txtに以下の内容が出力される
+# 09_file2-2.txtに以下の内容が出力される
 #2012-12-09 12:55:38 +0900 : Hello out there
 
-f = TimeStampingWriter.new(NumberingWriter.new(SimpleWriter.new('09_test_data_sample3.txt')))
+f = TimeStampingWriter.new(NumberingWriter.new(SimpleWriter.new('09_file2-3.txt')))
 f.write_line('Hello out there')
 f.close
-# file3.txtに以下の内容が出力される
+# 09_file2-3.txtに以下の内容が出力される
 #1 : 2012-12-09 12:55:38 +0900 : Hello out there
