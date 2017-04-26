@@ -1,4 +1,4 @@
-## はじめに
+# Observer
 
 GoFのデザインパターン(Design Pattern)のオブザーバー(Observer)のRubyコードを使った紹介記事です。
 
