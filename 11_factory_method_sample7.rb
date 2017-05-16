@@ -128,22 +128,13 @@ class Habitat
     @animals.each { |animal| animal.eat }
     @animals.each { |animal| animal.sleep }
   end
-
-  def new_organism(type, name)
-    if type == :animal
-      @animal_class.new(name)
-    elsif type == :plant
-      @plant_class.new(name)
-    else
-      raise "Unknown organism type: #{type}"
-    end
-  end
 end
 
 # ======================================
-jungle
-jungle = Habitat.new(1, 4, JungleOrganismFactory.new)
+jungle_organism_factory = OrganismFactory.new(Tree, Tiger)
+pond_organism_factory = OrganismFactory.new(WaterLily, Frog)
+jungle = Habitat.new(1, 4, jungle_organism_factory)
 jungle.simulate_one_day
 
-pond = Habitat.new(2, 4, PondOrganismFactory.new)
+pond = Habitat.new(2, 4, pond_organism_factory)
 pond.simulate_one_day
